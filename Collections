@@ -1,0 +1,102 @@
+// 1. List
+fun main() {
+    val numbers = listOf(0, 3, 8, 4, 0, 5, 5, 8, 9, 2)
+    println("list:   ${numbers}")
+    println("sorted: ${numbers.sorted()}")
+    val setOfNumbers = numbers.toSet()
+	println("set:    ${setOfNumbers}")
+    val set1 = setOf(1,2,3)
+    val set2 = mutableSetOf(3,2,1)
+    println("$set1 == $set2: ${set1 == set2}")
+    println("contains 7: ${setOfNumbers.contains(7)}")
+}
+
+// 2. Maps
+fun main() {
+    val peopleAges = mutableMapOf<String, Int>(
+        "Fred" to 30,
+        "Ann" to 23
+    )
+    //add Barbara to the map using put()
+    peopleAges.put("Barbara", 42)
+
+    //add Joe using shorthand notation
+	  peopleAges ["Joe"] = 51
+
+    //update age of Fred
+    peopleAges["Fred"] = 31
+    println(peopleAges)
+}
+
+// 3. forEach() function
+fun main() {
+    val peopleAges = mutableMapOf<String, Int>(
+        "Fred" to 30,
+        "Ann" to 23
+    )
+    peopleAges.put("Barbara", 42)
+	peopleAges ["Joe"] = 51
+    peopleAges["Fred"] = 31
+    peopleAges.forEach { print("${it.key} is ${it.value}, ") }
+}
+
+// 4. map() function
+//this will return same results as the forEach() code
+fun main() {
+    val peopleAges = mutableMapOf<String, Int>(
+        "Fred" to 30,
+        "Ann" to 23
+    )
+    peopleAges.put("Barbara", 42)
+	  peopleAges ["Joe"] = 51
+    peopleAges["Fred"] = 31
+    println(peopleAges.map { "${it.key} is ${it.value}" }.joinToString(", "))
+}
+
+//5. filter()
+fun main() {
+    val peopleAges = mutableMapOf<String, Int>(
+        "Fred" to 30,
+        "Ann" to 23
+    )
+    peopleAges.put("Barbara", 42)
+	  peopleAges ["Joe"] = 51
+    peopleAges["Fred"] = 31
+    println(peopleAges.map { "${it.key} is ${it.value}" }.joinToString(", "))
+    val filteredNames = peopleAges.filter { it.key.length < 4 }
+    println(filteredNames)
+}
+
+// 6. lamda expression
+fun main() {
+    val triple: (Int) -> Int = {  a: Int -> a * 3 }
+    println(triple(5))
+}
+//lambda expression with it keyword
+fun main() {
+    val triple: (Int) -> Int = {  it * 3 }
+    println(triple(5))
+}
+
+fun main() {
+    val peopleNames = listOf("Fred", "Ann", "Barbara", "Joe")\
+    //sort by abc
+    println(peopleNames.sorted())
+    //sort by length ascending result will be Ann, Joe, Fred, Barbara
+    println(peopleNames.sortedWith { str1: String, str2: String -> str1.length - str2.length })
+}
+
+// 7.Word list
+fun main() {
+    val words = listOf("about", "acute", "awesome", "balloon", "best", "brief", "class", "coffee", "creative")
+    val filteredWords = words.filter { it.startsWith("b", ignoreCase = true) } // take the words that starts with b
+        // randomly shuffle the 3 words thats starts with b, so each time might be in different order
+        .shuffled()
+        //take 2 of the words from the 3, so the 2 words might be different everytime due to shuffle()
+        .take(2)
+        //sort by abc
+        .sorted()
+	println(filteredWords)
+}
+
+
